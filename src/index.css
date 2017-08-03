@@ -1,0 +1,42 @@
+/**
+ * SuperImage
+ */
+
+.SuperImage {
+  max-width: 100%;
+}
+
+.SuperImage.-flexible {
+  width: 100%;
+  height: 100%;
+}
+
+img.SuperImage.-contain {
+  object-fit: contain;
+}
+
+img.SuperImage.-cover {
+  object-fit: cover;
+}
+
+/* Object-fit polyfill */
+
+div.SuperImage {
+  display: inline-block;
+}
+
+div.SuperImage.-contain {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+}
+
+div.SuperImage.-cover {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+/* Failover */
+
+/* .SuperImage.is-error {} */
