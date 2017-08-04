@@ -1,6 +1,6 @@
 {
   "name": "super-image",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "React image component with LazyLoad and object-fit",
   "main": "lib/index.js",
   "scripts": {
