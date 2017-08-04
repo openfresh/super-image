@@ -1,7 +1,7 @@
 {
   "name": "super-image",
   "version": "0.0.0",
-  "description": "",
+  "description": "React image component with LazyLoad and object-fit",
   "main": "lib/index.js",
   "scripts": {
     "build": "rm -rf lib && npm run js && npm run css",
@@ -16,6 +16,14 @@
     "type": "git",
     "url": "git+https://github.com/openfresh/super-image.git"
   },
+  "keywords": [
+    "react",
+    "viewport",
+    "intersection",
+    "object-fit",
+    "lazyload",
+    "image"
+  ],
   "author": "openfresh",
   "license": "MIT",
   "bugs": {
@@ -25,9 +33,6 @@
   "dependencies": {
     "bem-classnames": "^1.0.7",
     "object.assign": "^4.0.4",
-    "prop-types": "^15.5.10",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
     "viewport-observer": "^0.7.1"
   },
   "devDependencies": {
@@ -60,5 +65,10 @@
     "stylelint-config-fresh": "^2.0.0",
     "stylelint-config-standard": "^17.0.0",
     "stylelint-order": "^0.6.0"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
   }
 }
