@@ -7,9 +7,10 @@
     "lint": "npm run lint:js && npm run lint:css",
     "lint:js": "eslint src",
     "lint:css": "stylelint src/*.css",
-    "build": "rm -rf lib dist && npm run build:js && npm run build:css",
+    "build": "rm -rf lib dist && npm run build:js && npm run build:css && npm run build:cp",
     "build:js": "NODE_ENV=development babel src --out-dir lib --ignore *.test.js",
     "build:css": "postcss src/index.css --use postcss-cssnext --output dist/super-image.css",
+    "build:cp": "cp lib/index.js dist/super-image.js",
     "test": "npm run lint && karma start karma.conf.js --single-run"
   },
   "repository": {

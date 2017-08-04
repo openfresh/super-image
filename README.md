@@ -1,5 +1,7 @@
 # super-image
 
+[![Build Status](https://travis-ci.org/openfresh/super-image.svg?branch=master)](https://travis-ci.org/openfresh/super-image)
+
 React image component with `LazyLoad` and `object-fit`
 
 ## Usage
