@@ -4,12 +4,12 @@
   "description": "React image component with LazyLoad and object-fit",
   "main": "lib/index.js",
   "scripts": {
-    "build": "rm -rf lib dist && npm run js && npm run css",
-    "js": "NODE_ENV=development babel src --out-dir lib --ignore *.test.js",
-    "css": "postcss src/index.css --use postcss-cssnext --output dist/super-image.css",
     "lint": "npm run lint:js && npm run lint:css",
     "lint:js": "eslint src",
     "lint:css": "stylelint src/*.css",
+    "build": "rm -rf lib dist && npm run js && npm run css",
+    "build:js": "NODE_ENV=development babel src --out-dir lib --ignore *.test.js",
+    "build:css": "postcss src/index.css --use postcss-cssnext --output dist/super-image.css",
     "test": "npm run lint && karma start karma.conf.js --single-run"
   },
   "repository": {
