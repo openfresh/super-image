@@ -12,7 +12,7 @@ module.exports = function(config) {
     browserify : {
       transform : ['babelify']
     },
-    browsers  : ['Chrome'],
+    browsers  : ['PhantomJS'],
     autoWatch : false,
     reporters : ['dots'],
     logLevel  : config.LOG_DEBUG
