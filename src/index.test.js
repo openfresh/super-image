@@ -13,8 +13,8 @@ describe('SuperImage', () => {
     assert(node.tagName === 'IMG');
   });
 
-  it('should return `<div>` element when `SuperImage` has `objectFitPolyfill` property', () => {
-    const superImage = TestUtils.renderIntoDocument(<SuperImage objectFitPolyfill src="" objectFit="cover" />);
+  it('should return `<div>` element when `SuperImage` has `fitFallback` property', () => {
+    const superImage = TestUtils.renderIntoDocument(<SuperImage fitFallback src="" fit="cover" />);
     const node = TestUtils.findRenderedDOMComponentWithClass(superImage, 'SuperImage');
 
     assert(node.tagName === 'DIV');

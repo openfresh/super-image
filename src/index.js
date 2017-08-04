@@ -12,15 +12,15 @@ const NOT_INHERITED_PROPS = [
   'src',
   'className',
   'flexible',
-  'objectFit',
-  'objectFitPolyfill',
+  'fit',
+  'fitFallback',
   'lazyload',
   'rootMargin',
   'altImage'
 ];
 const classes = {
   name      : 'SuperImage',
-  modifiers : ['objectFit', 'flexible'],
+  modifiers : ['fit', 'flexible'],
   states    : ['error']
 };
 
@@ -31,30 +31,30 @@ const classes = {
  */
 export default class SuperImage extends React.Component {
   static propTypes = {
-    src               : PropTypes.string.isRequired,
-    width             : PropTypes.string,
-    height            : PropTypes.string,
-    alt               : PropTypes.string,
-    className         : PropTypes.string,
-    flexible          : PropTypes.bool,
-    objectFit         : PropTypes.oneOf(['contain', 'cover']),
-    objectFitPolyfill : PropTypes.bool,
-    lazyload          : PropTypes.bool,
-    rootMargin        : PropTypes.string,
-    altImage          : PropTypes.string
+    src         : PropTypes.string.isRequired,
+    width       : PropTypes.string,
+    height      : PropTypes.string,
+    alt         : PropTypes.string,
+    className   : PropTypes.string,
+    flexible    : PropTypes.bool,
+    fit         : PropTypes.oneOf(['contain', 'cover']),
+    fitFallback : PropTypes.bool,
+    lazyload    : PropTypes.bool,
+    rootMargin  : PropTypes.string,
+    altImage    : PropTypes.string
   };
 
   static defaultProps = {
-    width             : null,
-    height            : null,
-    alt               : '',
-    className         : '',
-    flexible          : false,
-    objectFit         : null,
-    objectFitPolyfill : false,
-    lazyload          : false,
-    rootMargin        : '0px',
-    altImage          : 'data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=' // GIF with transparent background
+    width       : null,
+    height      : null,
+    alt         : '',
+    className   : '',
+    flexible    : false,
+    fit         : null,
+    fitFallback : false,
+    lazyload    : false,
+    rootMargin  : '0px',
+    altImage    : 'data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=' // GIF with transparent background
   };
 
   constructor(props) {
@@ -159,12 +159,12 @@ export default class SuperImage extends React.Component {
   }
 
   render() {
-    const { objectFit, objectFitPolyfill, lazyload, rootMargin } = this.props;
+    const { fit, fitFallback, lazyload, rootMargin } = this.props;
     let element;
 
-    if (!objectFit) {
+    if (!fit) {
       element = this.renderImage();
-    } else if (objectFitPolyfill) {
+    } else if (fitFallback) {
       element = this.renderImageWithObjectFitPolyfill();
     } else {
       element = this.renderImage();
