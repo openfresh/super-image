@@ -2,30 +2,15 @@
 
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import assign from 'object.assign';
-import cx from 'bem-classnames';
-import ViewportObserver from 'viewport-observer';
-
-cx.prefixes.modifiers = '-';
 
 const NOT_INHERITED_PROPS = [
-  'src',
-  'className',
   'flexible',
   'fit',
-  'fitFallback',
-  'lazyload',
-  'rootMargin',
-  'altImage'
+  'fitFallback'
 ];
-const classes = {
-  name      : 'SuperImage',
-  modifiers : ['fit', 'flexible'],
-  states    : ['error']
-};
 
 /**
- * Image with lazyload and object-fit
+ * Image with object-fit or object-fit fallback
  *
  * @class SuperImage
  */
@@ -36,12 +21,9 @@ export default class SuperImage extends React.Component {
     height      : PropTypes.string,
     alt         : PropTypes.string,
     className   : PropTypes.string,
-    flexible    : PropTypes.bool,
     fit         : PropTypes.oneOf(['contain', 'cover']),
     fitFallback : PropTypes.bool,
-    lazyload    : PropTypes.bool,
-    rootMargin  : PropTypes.string,
-    altImage    : PropTypes.string
+    flexible    : PropTypes.bool
   };
 
   static defaultProps = {
@@ -49,138 +31,79 @@ export default class SuperImage extends React.Component {
     height      : null,
     alt         : '',
     className   : '',
-    flexible    : false,
     fit         : null,
     fitFallback : false,
-    lazyload    : false,
-    rootMargin  : '0px',
-    altImage    : 'data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=' // GIF with transparent background
+    flexible    : false
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      src   : props.altImage,
-      error : false
-    };
-
-    this.onEnter = this.onEnter.bind(this);
-    this.onError = this.onError.bind(this);
-  }
-
-  onEnter() {
-    this.setState({
-      src : this.props.src
-    });
-  }
-
-  onError() {
-    this.setState({
-      src   : this.props.altImage,
-      error : true
-    });
-  }
-
-  componentWillMount() {
-    const { src, lazyload } = this.props;
-
-    if (!lazyload) {
-      this.setState({
-        src : src
-      });
-    }
-  }
-
-  componentDidMount() {
-    const { src, lazyload } = this.props;
-
-    if (!window.IntersectionObserver || !lazyload) {
-      this.setState({
-        src : src
-      });
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.src !== this.props.src) {
-      this.setState({
-        src : nextProps.src
-      });
-    }
-  }
-
   renderImage() {
-    const { alt, className } = this.props;
-    const { src } = this.state;
+    const { src, alt, fit, flexible } = this.props;
+    let styleAttr = {};
+    let extendsProps = {};
+
+    if (fit) {
+      styleAttr.objectFit = fit;
+    }
+
+    if (flexible) {
+      styleAttr.width = '100%';
+      styleAttr.height = '100%';
+    }
 
     // Props given to this Component is inherited <img /> in all
-    const extendsProps = NOT_INHERITED_PROPS.reduce((curt, key) => {
-      delete curt[key];
-      return curt;
-    }, assign({}, this.props));
+    Object.keys(this.props).forEach(key => {
+      if (NOT_INHERITED_PROPS.indexOf(key) === -1) {
+        extendsProps[key] = this.props[key];
+      }
+    });
 
     return (
       <img
         src={src}
         alt={alt}
-        className={cx(classes, this.props, this.state, className)}
-        onError={this.onError}
+        style={styleAttr}
         {...extendsProps}
       />
     );
   }
 
-  // object-fit polyfill
-  renderImageWithObjectFitPolyfill() {
-    const { width, height, alt, className, flexible } = this.props;
-    const { src } = this.state;
+  // object-fit fallback
+  renderImageWithObjectFitFallback() {
+    const { src, width, height, alt, className, flexible, fit } = this.props;
     let styleAttr = {
-      width           : `${width}px`,
-      height          : `${height}px`,
-      backgroundImage : `url(${src})`
+      display            : 'inline-block',
+      width              : flexible ? '100%' : `${width}px`,
+      height             : flexible ? '100%' : `${height}px`,
+      backgroundImage    : `url(${src})`,
+      backgroundRepeat   : 'no-repeat',
+      backgroundPosition : 'center center'
     };
 
-    if (!width || flexible) {
+    if (!width) {
       delete styleAttr.width;
     }
 
-    if (!height || flexible) {
+    if (!height) {
       delete styleAttr.height;
+    }
+
+    if (fit) {
+      styleAttr.backgroundSize = fit;
     }
 
     return (
       <div
         aria-label={alt}
-        className={cx(classes, this.props, className)}
+        className={className}
         style={styleAttr}
       />
     );
   }
 
   render() {
-    const { fit, fitFallback, lazyload, rootMargin } = this.props;
-    let element;
-
-    if (!fit) {
-      element = this.renderImage();
-    } else if (fitFallback) {
-      element = this.renderImageWithObjectFitPolyfill();
-    } else {
-      element = this.renderImage();
+    if (this.props.fitFallback) {
+      return this.renderImageWithObjectFitFallback();
     }
-
-    if (lazyload) {
-      return (
-        <ViewportObserver
-          triggerOnce
-          rootMargin={rootMargin}
-          onEnter={this.onEnter}
-        >
-          {element}
-        </ViewportObserver>
-      );
-    }
-    return element;
+    return this.renderImage();
   }
 }

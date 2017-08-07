@@ -8,14 +8,14 @@ import SuperImage from '.';
 describe('SuperImage', () => {
   it('should return `<img>` element', () => {
     const superImage = TestUtils.renderIntoDocument(<SuperImage src="" />);
-    const node = TestUtils.findRenderedDOMComponentWithClass(superImage, 'SuperImage');
+    const node = TestUtils.findRenderedDOMComponentWithTag(superImage, 'img');
 
     assert(node.tagName === 'IMG');
   });
 
   it('should return `<div>` element when `SuperImage` has `fitFallback` property', () => {
     const superImage = TestUtils.renderIntoDocument(<SuperImage fitFallback src="" fit="cover" />);
-    const node = TestUtils.findRenderedDOMComponentWithClass(superImage, 'SuperImage');
+    const node = TestUtils.findRenderedDOMComponentWithTag(superImage, 'div');
 
     assert(node.tagName === 'DIV');
   });
@@ -28,16 +28,9 @@ describe('SuperImage', () => {
   });
 
   it('should have expected `className`', () => {
-    const superImage = TestUtils.renderIntoDocument(<SuperImage flexible src="" className="a" />);
+    const superImage = TestUtils.renderIntoDocument(<SuperImage src="" className="a" />);
     const node = TestUtils.findRenderedDOMComponentWithTag(superImage, 'img');
 
-    assert(node.className === 'SuperImage -flexible a');
-  });
-
-  it('should switch to an alternate image when failed to load the image', () => {
-    const superImage = TestUtils.renderIntoDocument(<SuperImage src="" />);
-    superImage.onError();
-    const node = TestUtils.findRenderedDOMComponentWithTag(superImage, 'img');
-    assert(node.getAttribute('src').indexOf('data:image/gif') !== -1);
+    assert(node.className === 'a');
   });
 });
