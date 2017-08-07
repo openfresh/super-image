@@ -37,30 +37,29 @@ export default class SuperImage extends React.Component {
   };
 
   renderImage() {
-    const { src, alt, fit, flexible } = this.props;
-    let styleAttr = {};
-    let extendsProps = {};
+    const styleAttr = {};
+    const extendsProps = {};
 
-    if (fit) {
-      styleAttr.objectFit = fit;
+    if (this.props.fit) {
+      styleAttr.objectFit = this.props.fit;
     }
 
-    if (flexible) {
+    if (this.props.flexible) {
       styleAttr.width = '100%';
       styleAttr.height = '100%';
     }
 
     // Props given to this Component is inherited <img /> in all
-    Object.keys(this.props).forEach(key => {
-      if (NOT_INHERITED_PROPS.indexOf(key) === -1) {
+    Object.keys(this.props)
+      .filter(key => NOT_INHERITED_PROPS.indexOf(key) === -1)
+      .forEach(key => {
         extendsProps[key] = this.props[key];
-      }
-    });
+      });
 
     return (
       <img
-        src={src}
-        alt={alt}
+        src={this.props.src}
+        alt={this.props.alt}
         style={styleAttr}
         {...extendsProps}
       />
@@ -69,32 +68,31 @@ export default class SuperImage extends React.Component {
 
   // object-fit fallback
   renderImageWithObjectFitFallback() {
-    const { src, width, height, alt, className, flexible, fit } = this.props;
-    let styleAttr = {
+    const styleAttr = {
       display            : 'inline-block',
-      width              : flexible ? '100%' : `${width}px`,
-      height             : flexible ? '100%' : `${height}px`,
-      backgroundImage    : `url(${src})`,
+      width              : this.props.flexible ? '100%' : `${this.props.width}px`,
+      height             : this.props.flexible ? '100%' : `${this.props.height}px`,
+      backgroundImage    : `url(${this.props.src})`,
       backgroundRepeat   : 'no-repeat',
       backgroundPosition : 'center center'
     };
 
-    if (!width) {
+    if (!this.props.width) {
       delete styleAttr.width;
     }
 
-    if (!height) {
+    if (!this.props.height) {
       delete styleAttr.height;
     }
 
-    if (fit) {
-      styleAttr.backgroundSize = fit;
+    if (this.props.fit) {
+      styleAttr.backgroundSize = this.props.fit;
     }
 
     return (
       <div
-        aria-label={alt}
-        className={className}
+        aria-label={this.props.alt}
+        className={this.props.className}
         style={styleAttr}
       />
     );
@@ -104,6 +102,7 @@ export default class SuperImage extends React.Component {
     if (this.props.fitFallback) {
       return this.renderImageWithObjectFitFallback();
     }
+
     return this.renderImage();
   }
 }

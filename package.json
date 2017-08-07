@@ -9,10 +9,7 @@
     "build:js": "NODE_ENV=development babel src --out-dir lib --ignore *.test.js",
     "test": "npm run lint && karma start karma.conf.js --single-run"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/openfresh/super-image.git"
-  },
+  "repository": "openfresh/super-image",
   "keywords": [
     "react",
     "object-fit",
