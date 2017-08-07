@@ -4,9 +4,9 @@
   "description": "React image component with object-fit and object-fit fallback",
   "main": "lib/index.js",
   "scripts": {
+    "prepublishOnly": "npm run build",
     "lint": "eslint src",
-    "build": "rm -rf lib dist && npm run build:js",
-    "build:js": "NODE_ENV=development babel src --out-dir lib --ignore *.test.js",
+    "build": "rm -rf lib dist && NODE_ENV=development babel src --out-dir lib --ignore *.test.js",
     "test": "npm run lint && karma start karma.conf.js --single-run"
   },
   "repository": "openfresh/super-image",
