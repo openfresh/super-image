@@ -1,16 +1,12 @@
 {
   "name": "super-image",
   "version": "0.1.0",
-  "description": "React image component with LazyLoad and object-fit",
+  "description": "React image component with object-fit and object-fit fallback",
   "main": "lib/index.js",
   "scripts": {
-    "lint": "npm run lint:js && npm run lint:css",
-    "lint:js": "eslint src",
-    "lint:css": "stylelint src/*.css",
-    "build": "rm -rf lib dist && npm run build:js && npm run build:css && npm run build:cp",
+    "lint": "eslint src",
+    "build": "rm -rf lib dist && npm run build:js",
     "build:js": "NODE_ENV=development babel src --out-dir lib --ignore *.test.js",
-    "build:css": "postcss src/index.css --use postcss-cssnext --output dist/super-image.css",
-    "build:cp": "cp lib/index.js dist/super-image.js",
     "test": "npm run lint && karma start karma.conf.js --single-run"
   },
   "repository": {
@@ -19,10 +15,7 @@
   },
   "keywords": [
     "react",
-    "viewport",
-    "intersection",
     "object-fit",
-    "lazyload",
     "image"
   ],
   "author": "openfresh",
@@ -31,11 +24,6 @@
     "url": "https://github.com/openfresh/super-image/issues"
   },
   "homepage": "https://github.com/openfresh/super-image#readme",
-  "dependencies": {
-    "bem-classnames": "^1.0.7",
-    "object.assign": "^4.0.4",
-    "viewport-observer": "^0.7.1"
-  },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3",
@@ -59,13 +47,7 @@
     "karma-mocha": "^1.3.0",
     "karma-phantomjs-launcher": "^1.0.4",
     "mocha": "^3.5.0",
-    "postcss-cli": "^4.1.0",
-    "postcss-cssnext": "^3.0.2",
-    "power-assert": "^1.4.4",
-    "stylelint": "^8.0.0",
-    "stylelint-config-fresh": "^2.0.0",
-    "stylelint-config-standard": "^17.0.0",
-    "stylelint-order": "^0.6.0"
+    "power-assert": "^1.4.4"
   },
   "peerDependencies": {
     "prop-types": "^15.5.10",
