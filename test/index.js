@@ -3,7 +3,7 @@
 import * as assert from 'power-assert';
 import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
-import SuperImage from '.';
+import SuperImage from '../src';
 
 describe('SuperImage', () => {
   it('should return `<img>` element', () => {
