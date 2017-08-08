@@ -1,12 +1,18 @@
-# super-image
+# SuperImage
 
 [![Build Status](https://travis-ci.org/openfresh/super-image.svg?branch=master)](https://travis-ci.org/openfresh/super-image)
 
-React image component with `object-fit` and `object-fit` fallback
+> React image component with [`object-fit`](https://developer.mozilla.org/docs/Web/CSS/object-fit) and its fallback
+
+## Install
+
+```bash
+$ npm install --save super-image
+```
+
+This package use `Object.assign()`, so you may need to polyfill via [`object.assign`](https://github.com/ljharb/object.assign).
 
 ## Usage
-
-### Example
 
 ```jsx
 <SuperImage
@@ -28,7 +34,8 @@ React image component with `object-fit` and `object-fit` fallback
 />
 ```
 
-### Properties
+## Config
+
 | Property | Type | Description | Default value | Required |
 |----------|------|-------------|---------------|----------|
 | src | String | Image url | - | Yes |
@@ -40,8 +47,6 @@ React image component with `object-fit` and `object-fit` fallback
 | fit | String | Value of the object-fit property. "contain", or "cover" | - | No |
 | fitFallback | Boolean | Force the component to use `background-image` | false | No |
 
-## LICENSE
+## License
 
-See [LICENSE](LICENSE).
-
-© [FRESH!](https://github.com/openfresh)
+MIT © [FRESH!](https://github.com/openfresh)
