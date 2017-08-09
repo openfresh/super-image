@@ -1,6 +1,8 @@
 # SuperImage
 
 [![Build Status](https://travis-ci.org/openfresh/super-image.svg?branch=master)](https://travis-ci.org/openfresh/super-image)
+[![devDependency Status](https://david-dm.org/openfresh/super-image/dev-status.svg)](https://david-dm.org/openfresh/super-image?type=dev)
+[![peerDependency Status](https://david-dm.org/openfresh/super-image/peer-status.svg)](https://david-dm.org/openfresh/super-image?type=peer)
 
 > React image component with [`object-fit`](https://developer.mozilla.org/docs/Web/CSS/object-fit) and its fallback
 
