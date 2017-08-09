@@ -10,7 +10,7 @@ const NOT_INHERITED_PROPS = [
 ];
 
 /**
- * Image with object-fit or object-fit fallback
+ * React component that render a image with object-fit and its fallback
  *
  * @class SuperImage
  */
@@ -66,7 +66,6 @@ export default class SuperImage extends React.Component {
     );
   }
 
-  // object-fit fallback
   renderImageWithObjectFitFallback() {
     const styleAttr = {
       display            : 'inline-block',
