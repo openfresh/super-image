@@ -69,19 +69,21 @@ export default class SuperImage extends React.Component {
   renderImageWithObjectFitFallback() {
     const styleAttr = {
       display            : 'inline-block',
-      width              : this.props.flexible ? '100%' : `${this.props.width}px`,
-      height             : this.props.flexible ? '100%' : `${this.props.height}px`,
       backgroundImage    : `url(${this.props.src})`,
       backgroundRepeat   : 'no-repeat',
       backgroundPosition : 'center center'
     };
 
-    if (!this.props.width) {
-      delete styleAttr.width;
+    if (this.props.flexible) {
+      styleAttr.width = '100%';
+    } else if (this.props.width) {
+      styleAttr.width = this.props.width;
     }
 
-    if (!this.props.height) {
-      delete styleAttr.height;
+    if (this.props.flexible) {
+      styleAttr.height = '100%';
+    } else if (this.props.height) {
+      styleAttr.height = this.props.height;
     }
 
     if (this.props.fit) {
