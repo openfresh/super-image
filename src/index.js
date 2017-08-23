@@ -76,11 +76,11 @@ export default class SuperImage extends React.Component {
       backgroundPosition : 'center center'
     };
 
-    if (!this.props.width) {
+    if (!this.props.flexible && !this.props.width) {
       delete styleAttr.width;
     }
 
-    if (!this.props.height) {
+    if (!this.props.flexible && !this.props.height) {
       delete styleAttr.height;
     }
 
