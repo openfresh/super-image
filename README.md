@@ -41,8 +41,8 @@ This package use `Object.assign()`, so you may need to polyfill via [`object.ass
 | Property | Type | Description | Default value | Required |
 |----------|------|-------------|---------------|----------|
 | src | String | Image url | - | Yes |
-| width | String | Image width | - | No |
-| height | String | Image height | - | No |
+| width | [`DOMString`](https://heycam.github.io/webidl/#idl-DOMString) | Image width | - | No |
+| height | [`DOMString`](https://heycam.github.io/webidl/#idl-DOMString) | Image height | - | No |
 | alt | String | Alternate text for image| "" | No |
 | className | String | Custom className | "" | No |
 | flexible | Boolean |If this is true, A Component size is not fixed. | false | No |
