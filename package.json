@@ -1,6 +1,6 @@
 {
   "name": "super-image",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "description": "React component that render a image with object-fit and its fallback",
   "main": "lib/index.js",
   "scripts": {
