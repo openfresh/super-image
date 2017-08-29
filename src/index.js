@@ -92,6 +92,7 @@ export default class SuperImage extends React.Component {
 
     return (
       <div
+        role="img"
         aria-label={this.props.alt}
         className={this.props.className}
         style={styleAttr}
