@@ -57,6 +57,7 @@ describe('SuperImage with fallback', () => {
     const node = TestUtils.findRenderedDOMComponentWithTag(superImage, 'div');
 
     assert.equal(node.tagName, 'DIV');
+    assert.equal(node.getAttribute('role'), 'img');
     assert.equal(node.style.backgroundSize, '');
     assert.equal(node.style.display, 'inline-block');
     assert.equal(node.style.backgroundRepeat, 'no-repeat');
