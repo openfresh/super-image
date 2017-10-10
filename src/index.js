@@ -110,13 +110,13 @@ export default class SuperImage extends React.Component {
     if (this.props.flexible) {
       styleAttr.width = '100%';
     } else if (this.props.width) {
-      styleAttr.width = this.props.width;
+      styleAttr.width = `${this.props.width}px`;
     }
 
     if (this.props.flexible) {
       styleAttr.height = '100%';
     } else if (this.props.height) {
-      styleAttr.height = this.props.height;
+      styleAttr.height = `${this.props.height}px`;
     }
 
     if (this.props.fit) {
