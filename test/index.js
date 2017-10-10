@@ -49,6 +49,24 @@ describe('SuperImage without fallback', () => {
 
     assert.equal(node.style.objectFit, 'contain');
   });
+
+  it('should return `<picture>` element when `sources` attribute exists', () => {
+    const sources = [
+      {
+        srcSet : '',
+        sizes  : '',
+        media  : '',
+        type   : ''
+      }
+    ];
+    const superImage = TestUtils.renderIntoDocument(<SuperImage src="" sources={sources} />);
+    const node = TestUtils.findRenderedDOMComponentWithTag(superImage, 'picture');
+
+    assert.equal(node.tagName, 'PICTURE');
+    assert.equal(node.firstElementChild.tagName, 'SOURCE');
+    assert.equal(node.lastElementChild.tagName, 'IMG');
+    assert.equal(node.style.objectFit, '');
+  });
 });
 
 describe('SuperImage with fallback', () => {
