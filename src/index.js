@@ -4,10 +4,14 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 
 const NOT_INHERITED_PROPS = [
+  'sources',
+  'width',
+  'height',
   'flexible',
   'fit',
   'fitFallback'
 ];
+const POSITIVE_INTEGER_PATTERN = /^\d+$/;
 
 /**
  * React component that render a image with object-fit and its fallback
@@ -54,6 +58,18 @@ export default class SuperImage extends React.Component {
     if (this.props.flexible) {
       styleAttr.width = '100%';
       styleAttr.height = '100%';
+    } else {
+      if (this.props.width && POSITIVE_INTEGER_PATTERN.test(this.props.width)) {
+        styleAttr.width = `${this.props.width}px`;
+      } else if (this.props.width) {
+        styleAttr.width = this.props.width;
+      }
+
+      if (this.props.height && POSITIVE_INTEGER_PATTERN.test(this.props.height)) {
+        styleAttr.height = `${this.props.height}px`;
+      } else if (this.props.height) {
+        styleAttr.height = this.props.height;
+      }
     }
 
     // Props given to this Component is inherited <img /> in all
@@ -109,14 +125,19 @@ export default class SuperImage extends React.Component {
 
     if (this.props.flexible) {
       styleAttr.width = '100%';
-    } else if (this.props.width) {
-      styleAttr.width = `${this.props.width}px`;
-    }
-
-    if (this.props.flexible) {
       styleAttr.height = '100%';
-    } else if (this.props.height) {
-      styleAttr.height = `${this.props.height}px`;
+    } else {
+      if (this.props.width && POSITIVE_INTEGER_PATTERN.test(this.props.width)) {
+        styleAttr.width = `${this.props.width}px`;
+      } else if (this.props.width) {
+        styleAttr.width = this.props.width;
+      }
+
+      if (this.props.height && POSITIVE_INTEGER_PATTERN.test(this.props.height)) {
+        styleAttr.height = `${this.props.height}px`;
+      } else if (this.props.height) {
+        styleAttr.height = this.props.height;
+      }
     }
 
     if (this.props.fit) {
