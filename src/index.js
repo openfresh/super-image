@@ -16,7 +16,13 @@ const NOT_INHERITED_PROPS = [
  */
 export default class SuperImage extends React.Component {
   static propTypes = {
-    src         : PropTypes.string.isRequired,
+    src     : PropTypes.string.isRequired,
+    sources : PropTypes.arrayOf(PropTypes.shape({
+      srcSet : PropTypes.string,
+      sizes  : PropTypes.string,
+      media  : PropTypes.string,
+      type   : PropTypes.string
+    })),
     width       : PropTypes.string,
     height      : PropTypes.string,
     alt         : PropTypes.string,
@@ -27,6 +33,7 @@ export default class SuperImage extends React.Component {
   };
 
   static defaultProps = {
+    sources     : [],
     width       : null,
     height      : null,
     alt         : '',
@@ -55,6 +62,32 @@ export default class SuperImage extends React.Component {
       .forEach(key => {
         extendsProps[key] = this.props[key];
       });
+
+    // Render picture element if `sources` property exists
+    if (this.props.sources.length > 0) {
+      const styleAttrForPict = {};
+
+      if (this.props.flexible) {
+        styleAttrForPict.width = '100%';
+        styleAttrForPict.height = '100%';
+      }
+
+      return (
+        <picture style={styleAttrForPict}>
+          {this.props.sources.map((source, i) => {
+            /* eslint-disable react/no-array-index-key */
+            return <source key={i} {...source} />;
+            /* eslint-disable react/no-array-index-key */
+          })}
+          <img
+            src={this.props.src}
+            alt={this.props.alt}
+            style={styleAttr}
+            {...extendsProps}
+          />
+        </picture>
+      );
+    }
 
     return (
       <img
