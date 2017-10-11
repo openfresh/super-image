@@ -59,13 +59,13 @@ export default class SuperImage extends React.Component {
       styleAttr.width = '100%';
       styleAttr.height = '100%';
     } else {
-      if (this.props.width && POSITIVE_INTEGER_PATTERN.test(this.props.width)) {
+      if (POSITIVE_INTEGER_PATTERN.test(this.props.width)) {
         styleAttr.width = `${this.props.width}px`;
       } else if (this.props.width) {
         styleAttr.width = this.props.width;
       }
 
-      if (this.props.height && POSITIVE_INTEGER_PATTERN.test(this.props.height)) {
+      if (POSITIVE_INTEGER_PATTERN.test(this.props.height)) {
         styleAttr.height = `${this.props.height}px`;
       } else if (this.props.height) {
         styleAttr.height = this.props.height;
@@ -127,13 +127,13 @@ export default class SuperImage extends React.Component {
       styleAttr.width = '100%';
       styleAttr.height = '100%';
     } else {
-      if (this.props.width && POSITIVE_INTEGER_PATTERN.test(this.props.width)) {
+      if (POSITIVE_INTEGER_PATTERN.test(this.props.width)) {
         styleAttr.width = `${this.props.width}px`;
       } else if (this.props.width) {
         styleAttr.width = this.props.width;
       }
 
-      if (this.props.height && POSITIVE_INTEGER_PATTERN.test(this.props.height)) {
+      if (POSITIVE_INTEGER_PATTERN.test(this.props.height)) {
         styleAttr.height = `${this.props.height}px`;
       } else if (this.props.height) {
         styleAttr.height = this.props.height;
