@@ -35,6 +35,22 @@ describe('SuperImage without fallback', () => {
     assert.equal(node.className, 'foo');
   });
 
+  it('should have `width` and `height` with specified value', () => {
+    const superImage = TestUtils.renderIntoDocument(<SuperImage width="10vw" height="10vw" src="" />);
+    const node = TestUtils.findRenderedDOMComponentWithTag(superImage, 'img');
+
+    assert.equal(node.style.width, '10vw');
+    assert.equal(node.style.height, '10vw');
+  });
+
+  it('should have `width` and `height` with pixels value when value is positive integer', () => {
+    const superImage = TestUtils.renderIntoDocument(<SuperImage width="10" height="10" src="" />);
+    const node = TestUtils.findRenderedDOMComponentWithTag(superImage, 'img');
+
+    assert.equal(node.style.width, '10px');
+    assert.equal(node.style.height, '10px');
+  });
+
   it('should have `width` and `height` with 100% when `flexible` attribute exists', () => {
     const superImage = TestUtils.renderIntoDocument(<SuperImage flexible src="" />);
     const node = TestUtils.findRenderedDOMComponentWithTag(superImage, 'img');
@@ -104,6 +120,14 @@ describe('SuperImage with fallback', () => {
   });
 
   it('should have `width` and `height` with specified value', () => {
+    const superImage = TestUtils.renderIntoDocument(<SuperImage fitFallback width="10vw" height="10vw" src="" />);
+    const node = TestUtils.findRenderedDOMComponentWithTag(superImage, 'div');
+
+    assert.equal(node.style.width, '10vw');
+    assert.equal(node.style.height, '10vw');
+  });
+
+  it('should have `width` and `height` with pixels value when value is positive integer', () => {
     const superImage = TestUtils.renderIntoDocument(<SuperImage fitFallback width="10" height="10" src="" />);
     const node = TestUtils.findRenderedDOMComponentWithTag(superImage, 'div');
 
