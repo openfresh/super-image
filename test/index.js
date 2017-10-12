@@ -83,6 +83,26 @@ describe('SuperImage without fallback', () => {
     assert.equal(node.lastElementChild.tagName, 'IMG');
     assert.equal(node.style.objectFit, '');
   });
+
+  it('should return `<picture>` element which have 100% on `width` and `height` when `sources` and `flexible` attribute exists', () => {
+    const sources = [
+      {
+        srcSet : '',
+        sizes  : '',
+        media  : '',
+        type   : ''
+      }
+    ];
+    const superImage = TestUtils.renderIntoDocument(<SuperImage flexible src="" sources={sources} />);
+    const node = TestUtils.findRenderedDOMComponentWithTag(superImage, 'picture');
+
+    assert.equal(node.tagName, 'PICTURE');
+    assert.equal(node.firstElementChild.tagName, 'SOURCE');
+    assert.equal(node.lastElementChild.tagName, 'IMG');
+    assert.equal(node.style.objectFit, '');
+    assert.equal(node.style.width, '100%');
+    assert.equal(node.style.height, '100%');
+  });
 });
 
 describe('SuperImage with fallback', () => {
@@ -135,7 +155,7 @@ describe('SuperImage with fallback', () => {
     assert.equal(node.style.height, '10px');
   });
 
-  it('should have `width` and `height` with 100% when `flexible` attribute exists', () => {
+  it('should have 100% on `width` and `height` when `flexible` attribute exists', () => {
     const superImage = TestUtils.renderIntoDocument(<SuperImage fitFallback flexible width="10" height="10" src="" />);
     const node = TestUtils.findRenderedDOMComponentWithTag(superImage, 'div');
 
