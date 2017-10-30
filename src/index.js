@@ -3,7 +3,7 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 
-const NOT_INHERITED_PROPS = [
+const UNKNOWN_PROPS = [
   'sources',
   'width',
   'height',
@@ -48,58 +48,58 @@ export default class SuperImage extends React.Component {
   };
 
   renderImage() {
-    const styleAttr = {};
-    const extendsProps = {};
+    const style = {};
+    const props = {};
 
     if (this.props.fit) {
-      styleAttr.objectFit = this.props.fit;
+      style.objectFit = this.props.fit;
     }
 
     if (this.props.flexible) {
-      styleAttr.width = '100%';
-      styleAttr.height = '100%';
+      style.width = '100%';
+      style.height = '100%';
     } else {
       if (POSITIVE_INTEGER_PATTERN.test(this.props.width)) {
-        styleAttr.width = `${this.props.width}px`;
+        style.width = `${this.props.width}px`;
       } else if (this.props.width) {
-        styleAttr.width = this.props.width;
+        style.width = this.props.width;
       }
 
       if (POSITIVE_INTEGER_PATTERN.test(this.props.height)) {
-        styleAttr.height = `${this.props.height}px`;
+        style.height = `${this.props.height}px`;
       } else if (this.props.height) {
-        styleAttr.height = this.props.height;
+        style.height = this.props.height;
       }
     }
 
     // Props given to this Component is inherited <img /> in all
     Object.keys(this.props)
-      .filter(key => NOT_INHERITED_PROPS.indexOf(key) === -1)
+      .filter(key => UNKNOWN_PROPS.indexOf(key) === -1)
       .forEach(key => {
-        extendsProps[key] = this.props[key];
+        props[key] = this.props[key];
       });
 
     // Render picture element if `sources` property exists
     if (this.props.sources.length > 0) {
-      const styleAttrForPict = {};
+      const pictureStyle = this.props.flexible ? {
+        width  : '100%',
+        height : '100%'
+      } : {};
 
-      if (this.props.flexible) {
-        styleAttrForPict.width = '100%';
-        styleAttrForPict.height = '100%';
-      }
+      /* eslint-disable react/no-array-index-key */
+      const sources = this.props.sources.map((source, i) => {
+        return <source key={i} {...source} />;
+      });
+      /* eslint-disable react/no-array-index-key */
 
       return (
-        <picture style={styleAttrForPict}>
-          {this.props.sources.map((source, i) => {
-            /* eslint-disable react/no-array-index-key */
-            return <source key={i} {...source} />;
-            /* eslint-disable react/no-array-index-key */
-          })}
+        <picture style={pictureStyle}>
+          {sources}
           <img
             src={this.props.src}
             alt={this.props.alt}
-            style={styleAttr}
-            {...extendsProps}
+            style={style}
+            {...props}
           />
         </picture>
       );
@@ -109,14 +109,14 @@ export default class SuperImage extends React.Component {
       <img
         src={this.props.src}
         alt={this.props.alt}
-        style={styleAttr}
-        {...extendsProps}
+        style={style}
+        {...props}
       />
     );
   }
 
   renderImageWithObjectFitFallback() {
-    const styleAttr = {
+    const style = {
       display            : 'inline-block',
       backgroundImage    : `url(${this.props.src})`,
       backgroundRepeat   : 'no-repeat',
@@ -124,24 +124,24 @@ export default class SuperImage extends React.Component {
     };
 
     if (this.props.flexible) {
-      styleAttr.width = '100%';
-      styleAttr.height = '100%';
+      style.width = '100%';
+      style.height = '100%';
     } else {
       if (POSITIVE_INTEGER_PATTERN.test(this.props.width)) {
-        styleAttr.width = `${this.props.width}px`;
+        style.width = `${this.props.width}px`;
       } else if (this.props.width) {
-        styleAttr.width = this.props.width;
+        style.width = this.props.width;
       }
 
       if (POSITIVE_INTEGER_PATTERN.test(this.props.height)) {
-        styleAttr.height = `${this.props.height}px`;
+        style.height = `${this.props.height}px`;
       } else if (this.props.height) {
-        styleAttr.height = this.props.height;
+        style.height = this.props.height;
       }
     }
 
     if (this.props.fit) {
-      styleAttr.backgroundSize = this.props.fit;
+      style.backgroundSize = this.props.fit;
     }
 
     return (
@@ -149,7 +149,7 @@ export default class SuperImage extends React.Component {
         role="img"
         aria-label={this.props.alt}
         className={this.props.className}
-        style={styleAttr}
+        style={style}
       />
     );
   }
