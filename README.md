@@ -26,7 +26,7 @@ This package use `Object.assign()`, so you may need to polyfill via [`object.ass
   fit="contain"
 />
 
-// Use picture element
+// Use <picture> element
 <SuperImage
   src="image.png"
   sources={[{ srcSet : 'image@2X.png 2x' }]}
@@ -36,7 +36,7 @@ This package use `Object.assign()`, so you may need to polyfill via [`object.ass
   fit="contain"
 />
 
-// Not supported object fit
+// Use fallback for object fit
 <SuperImage
   fitFallback
   src="image.png"
@@ -52,14 +52,14 @@ This package use `Object.assign()`, so you may need to polyfill via [`object.ass
 | Property | Type | Description | Default value | Required |
 |----------|------|-------------|---------------|----------|
 | src | String | Image url | - | Yes |
-| sources | Array | Array of objects with source element properties. "srcSet", "sizes", "media" and "type" supported | [] | No |
+| sources | Array<Object> | Sets of `<source>` element attributes: `srcSet`, `sizes`, `media` and `type` | `[]` | No |
 | width | [`DOMString`](https://heycam.github.io/webidl/#idl-DOMString) | Image width | - | No |
 | height | [`DOMString`](https://heycam.github.io/webidl/#idl-DOMString) | Image height | - | No |
-| alt | String | Alternate text for image| "" | No |
-| className | String | Custom className | "" | No |
-| flexible | Boolean |If this is true, A Component size is not fixed. | false | No |
-| fit | String | Value of the object-fit property. "contain", or "cover" | - | No |
-| fitFallback | Boolean | Force the component to use `background-image` | false | No |
+| alt | String | Alternative text for `<img>` element | `""` | No |
+| className | String | `className` property for component | `""` | No |
+| flexible | Boolean | If true, component size will not be fixed | `false` | No |
+| fit | String | Value for `object-fit` property: `contain` or `cover` | - | No |
+| fitFallback | Boolean | Force component to use `background-image` | `false` | No |
 
 ## License
 
