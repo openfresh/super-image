@@ -4,18 +4,11 @@
 import * as React from 'react';
 
 declare namespace SuperImage {
-  export interface Source {
-    srcSet?: string;
-    sizes?: string;
-    media?: string;
-    type?: string;
-  }
-
   export interface Props {
     src: string;
-    sources?: Source[];
-    width?: string;
-    height?: string;
+    sources?: React.SourceHTMLAttributes<HTMLSourceElement>[];
+    width?: number | string;
+    height?: number | string;
     alt?: string;
     className?: string;
     fit?: 'contain' | 'cover';
