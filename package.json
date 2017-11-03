@@ -21,6 +21,7 @@
     "url": "https://github.com/openfresh/super-image/issues"
   },
   "homepage": "https://github.com/openfresh/super-image#readme",
+  "typings": "type/index.d.ts",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.1",
