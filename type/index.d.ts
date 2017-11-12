@@ -19,4 +19,4 @@ declare namespace SuperImage {
 
 declare class SuperImage extends React.Component<SuperImage.Props> {}
 
-export = SuperImage;
+export default SuperImage;
