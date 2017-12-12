@@ -27,8 +27,8 @@ export default class SuperImage extends React.Component {
       media  : PropTypes.string,
       type   : PropTypes.string
     })),
-    width       : PropTypes.string,
-    height      : PropTypes.string,
+    width       : PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    height      : PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     alt         : PropTypes.string,
     className   : PropTypes.string,
     fit         : PropTypes.oneOf(['contain', 'cover']),
