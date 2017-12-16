@@ -1,5 +1,7 @@
 # SuperImage
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/openfresh/super-image.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.org/openfresh/super-image.svg?branch=master)](https://travis-ci.org/openfresh/super-image)
 [![devDependency Status](https://david-dm.org/openfresh/super-image/dev-status.svg)](https://david-dm.org/openfresh/super-image?type=dev)
 [![peerDependency Status](https://david-dm.org/openfresh/super-image/peer-status.svg)](https://david-dm.org/openfresh/super-image?type=peer)
