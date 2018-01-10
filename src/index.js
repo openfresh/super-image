@@ -30,6 +30,7 @@ export default class SuperImage extends React.Component {
     width       : PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     height      : PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     alt         : PropTypes.string,
+    role        : PropTypes.string,
     className   : PropTypes.string,
     fit         : PropTypes.oneOf(['contain', 'cover']),
     fitFallback : PropTypes.bool,
@@ -41,6 +42,7 @@ export default class SuperImage extends React.Component {
     width       : null,
     height      : null,
     alt         : '',
+    role        : null,
     className   : '',
     fit         : null,
     fitFallback : false,
@@ -146,7 +148,7 @@ export default class SuperImage extends React.Component {
 
     return (
       <div
-        role="img"
+        role={this.props.role || 'img'}
         aria-label={this.props.alt}
         className={this.props.className}
         style={style}
