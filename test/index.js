@@ -42,6 +42,13 @@ describe('SuperImage without fallback', () => {
     assert(!node.hasAttribute('role'));
   });
 
+  it('should have `role="img"` when `alt` it not empty', () => {
+    const superImage = TestUtils.renderIntoDocument(<SuperImage src="" role="presentation" alt="some text" />);
+    const node = TestUtils.findRenderedDOMComponentWithTag(superImage, 'img');
+
+    assert.equal(node.getAttribute('role'), 'img');
+  });
+
   it('should have expected `className`', () => {
     const superImage = TestUtils.renderIntoDocument(<SuperImage src="" className="foo" />);
     const node = TestUtils.findRenderedDOMComponentWithTag(superImage, 'img');
@@ -151,6 +158,13 @@ describe('SuperImage with fallback', () => {
     const node = TestUtils.findRenderedDOMComponentWithTag(superImage, 'div');
 
     assert.equal(node.getAttribute('role'), 'presentation');
+  });
+
+  it('should have `role="img"` when `alt` it not empty', () => {
+    const superImage = TestUtils.renderIntoDocument(<SuperImage fitFallback src="" role="presentation" alt="some text" />);
+    const node = TestUtils.findRenderedDOMComponentWithTag(superImage, 'div');
+
+    assert.equal(node.getAttribute('role'), 'img');
   });
 
   it('should have expected `className`', () => {
