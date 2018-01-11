@@ -30,6 +30,7 @@ export default class SuperImage extends React.Component {
     width       : PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     height      : PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     alt         : PropTypes.string,
+    role        : PropTypes.oneOf(['none', 'presentation']),
     className   : PropTypes.string,
     fit         : PropTypes.oneOf(['contain', 'cover']),
     fitFallback : PropTypes.bool,
@@ -41,6 +42,7 @@ export default class SuperImage extends React.Component {
     width       : null,
     height      : null,
     alt         : '',
+    role        : null,
     className   : '',
     fit         : null,
     fitFallback : false,
@@ -78,6 +80,12 @@ export default class SuperImage extends React.Component {
       .forEach(key => {
         props[key] = this.props[key];
       });
+
+    // If alt is empty, only 'img' is specified as role
+    // @see https://www.w3.org/TR/html-aria/#img-alt
+    if (props.alt && props.role) {
+      props.role = 'img';
+    }
 
     // Render picture element if `sources` property exists
     if (this.props.sources.length > 0) {
@@ -146,7 +154,7 @@ export default class SuperImage extends React.Component {
 
     return (
       <div
-        role="img"
+        role={this.props.alt ? 'img' : (this.props.role || 'img')}
         aria-label={this.props.alt}
         className={this.props.className}
         style={style}

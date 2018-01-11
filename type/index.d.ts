@@ -7,6 +7,8 @@ declare namespace SuperImage {
   export interface Props extends React.ImgHTMLAttributes<HTMLImageElement> {
     src: string;
     sources?: React.SourceHTMLAttributes<HTMLSourceElement>[];
+    alt?: string;
+    role?: 'none' | 'presentation';
     fit?: 'contain' | 'cover';
     fitFallback?: boolean;
     flexible?: boolean;

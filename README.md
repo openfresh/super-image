@@ -70,6 +70,7 @@ Set `fitFallback` property `true`.
 | width | [`DOMString`](https://heycam.github.io/webidl/#idl-DOMString) | Image width | - | No |
 | height | [`DOMString`](https://heycam.github.io/webidl/#idl-DOMString) | Image height | - | No |
 | alt | String | Alternative text for `<img>` | `""` | No |
+| role | String | WAI-ARIA for `<img>` | - | No |
 | className | String | `className` property for component | `""` | No |
 | flexible | Boolean | Make component fluid | `false` | No |
 | fit | String | CSS `object-fit` property for `<img>` (`contain` or `cover`) | - | No |
