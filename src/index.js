@@ -81,10 +81,11 @@ export default class SuperImage extends React.Component {
         props[key] = this.props[key];
       });
 
-    // If alt is empty, only 'img' is specified as role
+    // If `alt` is not empty, `none` or `presentation` can not be specified.
+    // So delete the `role` attribute.
     // @see https://www.w3.org/TR/html-aria/#img-alt
-    if (props.alt && props.role) {
-      props.role = 'img';
+    if (props.alt && props.role !== 'img') {
+      props.role = null;
     }
 
     // Render picture element if `sources` property exists
