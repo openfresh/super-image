@@ -3,6 +3,9 @@
   "version": "2.3.0",
   "description": "React component that render `<img>` with nicer interface",
   "main": "lib/index.js",
+  "engines": {
+    "node": ">=6"
+  },
   "scripts": {
     "prepublishOnly": "npm run build",
     "build": "rm -rf lib && NODE_ENV=development babel src --out-dir lib",
